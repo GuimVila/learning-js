@@ -1,73 +1,74 @@
-DDD (Domain-Driven Design) és una metodologia de disseny de programari que se centra en 
-construir aplicacions complexes alineades amb el domini empresarial 
-(el "món real" que el programari intenta modelar). 
-Creat per Eric Evans en el seu llibre Domain-Driven Design: Tackling Complexity 
-in the Heart of Software, DDD és útil per entendre i gestionar la complexitat dels sistemes grans.
+Domain-Driven Design (DDD) és una metodologia de disseny de programari que se centra en construir aplicacions complexes alineades amb el domini empresarial (el "món real" que el programari intenta modelar). Creat per Eric Evans, DDD és especialment útil per entendre i gestionar la complexitat dels sistemes grans.
 
-Principis clau de DDD
-Modelar el domini empresarial
+PRINCIPIS CLAU DE DDD
 
-El codi ha de reflectir el coneixement i les regles del domini (l’àrea d’experiència per la qual es desenvolupa el sistema).
-Per fer-ho, DDD utilitza un llenguatge comú entre desenvolupadors i experts del domini.
-Ubiquitous Language (Llenguatge omnipresent)
+1. **Modelar el domini empresarial**
+   - El codi ha de reflectir el coneixement i les regles del domini (l'àrea d'experiència per la qual es desenvolupa el sistema).
+   - Utilitza un llenguatge comú entre desenvolupadors i experts del domini.
 
-Un vocabulari compartit entre desenvolupadors i experts del domini.
-Totes les parts del sistema (codi, documentació, proves) han de reflectir aquest llenguatge.
-Dividir el domini en contextos delimitats (Bounded Contexts)
+2. **Ubiquitous Language (Llenguatge omnipresent)**
+   - Un vocabulari compartit entre desenvolupadors i experts del domini.
+   - Totes les parts del sistema (codi, documentació, proves) han de reflectir aquest llenguatge.
 
-Les aplicacions solen gestionar múltiples subdominis (per exemple, "facturació" o "gestió d’usuaris").
-Cada subdomini ha de tenir el seu propi context i model per evitar confusions i dependències innecessàries.
-Elements principals de DDD
-Entities (Entitats)
+3. **Dividir el domini en contextos delimitats (Bounded Contexts)**
+   - Les aplicacions gestionen múltiples subdominis (per exemple, "facturació" o "gestió d'usuaris").
+   - Cada subdomini té el seu propi context i model per evitar confusions i dependències innecessàries.
 
-Objectes identificables únicament dins del domini.
-Exemple: Un "Usuari" amb un ID únic que perdura encara que les dades canviïn.
-Value Objects (Objectes de valor)
+ELEMENTS PRINCIPALS DE DDD
 
-Objectes sense identitat, definits pels seus valors.
-Exemple: Una "Adreça" amb un carrer, ciutat, i codi postal.
-Aggregates (Agregats)
+1. **Entities (Entitats):** Objectes identificables únicament dins del domini.
+   - Exemple: Un "Usuari" amb un ID únic que perdura encara que les dades canviïn.
 
-Conjunts d'entitats i objectes de valor que formen una unitat consistent.
-Exemple: Una "Comanda" (agregat) que inclou productes (entitats) i el preu total (objecte de valor).
-Repositories
+2. **Value Objects (Objectes de valor):** Objectes sense identitat, definits pels seus valors.
+   - Exemple: Una "Adreça" amb carrer, ciutat i codi postal.
 
-Classes que gestionen l’accés a les dades persistents de les entitats i agregats.
-Exemple: OrderRepository per guardar i recuperar comandes de la base de dades.
-Domain Events (Esdeveniments de domini)
+3. **Aggregates (Agregats):** Conjunts d'entitats i objectes de valor que formen una unitat consistent.
+   - Exemple: Una "Comanda" que inclou productes (entitats) i el preu total (objecte de valor).
 
-Esdeveniments que representen accions importants dins del domini.
-Exemple: Quan un client crea una comanda, es genera un esdeveniment com "OrderCreated".
-Services
+4. **Repositories:** Classes que gestionen l'accés a les dades persistents de les entitats i agregats.
+   - Exemple: `OrderRepository` per guardar i recuperar comandes de la base de dades.
 
-Classes que encapsulen lògica de domini que no encaixa fàcilment en una entitat o agregat.
-Exemple: Un servei de càlcul d’impostos.
-Divisió del domini: Contextos delimitats
-Bounded Contexts
-Cada subdomini té el seu propi model i context independent:
+5. **Domain Events (Esdeveniments de domini):** Esdeveniments que representen accions importants dins del domini.
+   - Exemple: Quan un client crea una comanda, es genera un esdeveniment com "OrderCreated".
 
-Exemple:
-Subdomini "Pagaments" pot tenir una entitat Invoice.
-Subdomini "Clients" pot tenir una entitat Customer.
-Les dues poden tenir diferències perquè pertanyen a contextos diferents.
-Context Map
-Un mapa que mostra les relacions entre contextos delimitats. Aquests poden tenir:
+6. **Services:** Classes que encapsulen lògica de domini que no encaixa fàcilment en una entitat o agregat.
+   - Exemple: Un servei de càlcul d'impostos.
 
-Shared Kernel: Un model compartit entre dos contextos.
-Anti-corruption Layer: Una capa per traduir models d’un context a un altre.
-Quan utilitzar DDD?
-Aplicacions complexes: Amb moltes regles de negoci i interaccions entre subdominis.
-Focus al domini: Quan el domini empresarial és el més important, no només l'aspecte tècnic.
-Necessitat d'evolució: Quan el sistema ha de canviar i escalar contínuament.
-Exemple senzill
-Una empresa gestiona comandes i clients. Utilitzem DDD per dissenyar el sistema.
+DIVISIÓ DEL DOMINI: CONTEXTOS DELIMITATS
 
-Entitats
-Customer amb propietats com ID, Name, i Email.
-Order amb OrderID, CustomerID, i OrderItems.
-Objectes de valor
-Address amb Street, City, i PostalCode.
-Repositori
-OrderRepository per guardar i recuperar comandes.
-Servei
-InvoiceService per generar factures.
+1. **Bounded Contexts:**
+   - Cada subdomini té el seu propi model i context independent.
+   - Exemple:
+     - Subdomini "Pagaments": Pot tenir una entitat `Invoice`.
+     - Subdomini "Clients": Pot tenir una entitat `Customer`.
+     - Els dos contextos poden ser diferents perquè pertanyen a subdominis diferents.
+
+2. **Context Map:**
+   - Un mapa que mostra les relacions entre contextos delimitats. Aquests poden tenir:
+     - **Shared Kernel:** Un model compartit entre dos contextos.
+     - **Anti-corruption Layer:** Una capa per traduir models d'un context a un altre.
+
+QUAN UTILITZAR DDD?
+
+1. **Aplicacions complexes:** Quan hi ha moltes regles de negoci i interaccions entre subdominis.
+2. **Focus en el domini:** Quan el domini empresarial és més important que l'aspecte tècnic.
+3. **Necessitat d'evolució:** Quan el sistema ha de canviar i escalar contínuament.
+
+EXEMPLE SENZILL
+
+Una empresa gestiona comandes i clients. Utilitzem DDD per dissenyar el sistema:
+
+1. **Entitats:**
+   - `Customer` amb propietats com `ID`, `Name`, i `Email`.
+   - `Order` amb `OrderID`, `CustomerID`, i `OrderItems`.
+
+2. **Objectes de valor:**
+   - `Address` amb `Street`, `City`, i `PostalCode`.
+
+3. **Repositori:**
+   - `OrderRepository` per guardar i recuperar comandes.
+
+4. **Servei:**
+   - `InvoiceService` per generar factures.
+
+Amb DDD, el codi es manté alineat amb les regles del domini, cosa que permet gestionar millor la complexitat dels sistemes grans.

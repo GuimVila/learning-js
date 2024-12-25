@@ -1,31 +1,31 @@
-CI/CD (Continuous Integration/Continuous Deployment/Delivery) is a methodology to automate and streamline the software development lifecycle, from writing code to deploying it in production.
+CI/CD (Integració Contínua/Desplegament Contínu/Entrega Contínua) és una metodologia per automatitzar i optimitzar el cicle de vida del desenvolupament de programari, des de l'escriptura de codi fins al desplegament en producció.
 
-1. **Continuous Integration (CI):**
-   - Frequent integration of code into a shared repository.
-   - Automated testing ensures changes don’t break the system.
-   - Benefits:
-     - Detect bugs early.
-     - Maintain a functional codebase.
-   - Tools: Jenkins, GitHub Actions, GitLab CI/CD.
+1. **Integració Contínua (CI):**
+   - Integració freqüent del codi en un repositori compartit.
+   - Les proves automatitzades asseguren que els canvis no trenquin el sistema.
+   - Beneficis:
+     - Detectar errors d'hora.
+     - Mantenir una base de codi funcional.
+   - Eines: Jenkins, GitHub Actions, GitLab CI/CD.
 
-2. **Continuous Delivery (CD):**
-   - Ensures code passing CI is ready for deployment.
-   - May include manual approvals for production.
-   - Benefits:
-     - Reduces deployment risks.
-     - Enables frequent releases.
+2. **Entrega Contínua (CD):**
+   - Assegura que el codi que passa la CI estigui llest per al desplegament.
+   - Pot incloure aprovacions manuals per a producció.
+   - Beneficis:
+     - Redueix els riscos de desplegament.
+     - Permet llançaments freqüents.
 
-3. **Continuous Deployment (CD):**
-   - Fully automates deployment to production after CI/CD pipelines pass.
-   - Benefits:
-     - Faster feature releases.
-     - Immediate user feedback.
+3. **Desplegament Contínu (CD):**
+   - Automatitza completament el desplegament en producció després de passar pels pipelines de CI/CD.
+   - Beneficis:
+     - Llançaments de funcionalitats més ràpids.
+     - Feedback immediat dels usuaris.
 
-**Comparison:**
-| Aspect                     | CI                          | Continuous Delivery        | Continuous Deployment       |
-|---------------------------|----------------------------|----------------------------|-----------------------------|
-| Objective                 | Validate code changes       | Prepare code for release   | Deploy changes automatically|
-| Automation                | Testing and integration     | Release pipelines          | Full deployment             |
-| Manual Intervention       | No                          | Optional                   | No                          |
+**Comparativa:**
+| Aspecte                  | CI                          | Entrega Contínua           | Desplegament Contínu        |
+|--------------------------|-----------------------------|----------------------------|-----------------------------|
+| Objectiu                | Validar canvis de codi       | Preparar codi per al llançament | Desplegar canvis automàticament |
+| Automatització          | Proves i integració          | Pipelines de llançament    | Desplegament complet        |
+| Intervenció manual      | No                           | Opcional                   | No                          |
 
-CI/CD simplifies and accelerates software development by automating repetitive tasks, ensuring reliability, and allowing teams to focus on delivering value to users.
+CI/CD simplifica i accelera el desenvolupament de programari automatitzant tasques repetitives, assegurant fiabilitat i permetent als equips centrar-se en oferir valor als usuaris.

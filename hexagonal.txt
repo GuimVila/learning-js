@@ -1,0 +1,135 @@
+L'arquitectura hexagonal, també coneguda com a arquitectura de ports i adaptadors, és un estil arquitectònic de disseny de programari proposat per Alistair Cockburn. El seu objectiu és separar clarament la lògica del domini (el cor de l'aplicació) de les interfícies externes (com bases de dades, serveis web o interfícies d'usuari).
+
+### Conceptes clau
+
+1. **Core (Lògica del Domini):**
+   - La part central de l'aplicació que conté les regles del negoci.
+   - No depèn de cap infraestructura externa.
+   - Inclou:
+     - Entitats del domini.
+     - Objectes de valor.
+     - Casos d'ús o serveis d'aplicació (coordinadors d'accions del domini).
+
+2. **Ports (Interfícies):**
+   - Defineixen com interactuar amb el core de l'aplicació.
+   - Tipus de ports:
+     - **Ports entrants:** Interfícies per rebre peticions al sistema (ex: casos d'ús).
+     - **Ports sortints:** Interfícies per interactuar amb components externs (ex: repositoris o serveis).
+
+3. **Adapters (Adaptadors):**
+   - Implementen els ports definits al core.
+   - Connecten la lògica del domini amb tecnologies específiques (bases de dades, APIs, etc.).
+
+### Beneficis de l'arquitectura hexagonal
+
+- **Independència de la infraestructura:** El domini no depèn de bases de dades, frameworks o serveis externs.
+- **Facilitat per testejar:** La lògica del domini es pot testejar sense dependre d'infraestructura.
+- **Escalabilitat i mantenibilitat:** Fàcil d'afegir nous adaptadors o funcionalitats sense modificar el core.
+- **Claredat de responsabilitats:** Cada part del sistema té una responsabilitat ben definida.
+
+### Com funciona?
+
+#### Exemple bàsic: Aplicació de gestió de comandes
+
+- **Domini:** Gestió de comandes en un e-commerce.
+- **Ports entrants:**
+  - Cas d'ús per "crear una comanda".
+  - Cas d'ús per "consultar l'estat d'una comanda".
+- **Ports sortints:**
+  - Repositori per guardar i recuperar comandes.
+  - Servei per enviar notificacions als clients.
+
+#### Diagrama conceptual:
+```
++----------------------------+
+|     Interfície d'usuari   |  <-- Adaptador (REST API, CLI, etc.)
++----------------------------+
+           |
+           V
++----------------------------+
+|       Port Entrant         |  <-- Defineix interfícies de casos d'ús
++----------------------------+
+           |
+           V
++----------------------------+
+|           Core             |  <-- Lògica del domini
+| - Entitats (Order)         |
+| - Casos d'ús               |
++----------------------------+
+           |
+           V
++----------------------------+
+|       Port Sortint         |  <-- Defineix interfícies per interactuar amb serveis externs
++----------------------------+
+           |
+           V
++----------------------------+
+|     Adaptadors externs     |  <-- Implementen els ports sortints
+| - Repositori (DB)          |
+| - Servei de notificacions  |
++----------------------------+
+```
+
+### Quan utilitzar l'arquitectura hexagonal?
+
+- **Aplicacions complexes:** Quan hi ha múltiples integracions amb serveis externs o bases de dades.
+- **Facilitat de testeig:** Si vols aïllar la lògica del domini per provar-la sense dependències externes.
+- **Evolució i manteniment:** Quan el sistema ha de ser flexible i fàcil de modificar.
+
+### Exemple pràctic en pseudocodi
+
+**Port entrant:**
+```plaintext
+interface CreateOrderUseCase {
+    execute(orderData): Order
+}
+```
+
+**Port sortint:**
+```plaintext
+interface OrderRepository {
+    save(order: Order): void
+    findById(orderId: string): Order
+}
+```
+
+**Lògica del domini:**
+```plaintext
+class Order {
+    constructor(orderId, items) {
+        this.orderId = orderId
+        this.items = items
+    }
+}
+
+class CreateOrderService implements CreateOrderUseCase {
+    constructor(orderRepository: OrderRepository) {
+        this.orderRepository = orderRepository
+    }
+
+    execute(orderData) {
+        const order = new Order(orderData.id, orderData.items)
+        this.orderRepository.save(order)
+        return order
+    }
+}
+```
+
+**Adaptador extern:**
+```plaintext
+class InMemoryOrderRepository implements OrderRepository {
+    constructor() {
+        this.orders = []
+    }
+
+    save(order) {
+        this.orders.push(order)
+    }
+
+    findById(orderId) {
+        return this.orders.find(order => order.orderId === orderId)
+    }
+}
+```
+
+Amb aquesta estructura, el core de l'aplicació és completament independent de com es persisteixen o es consumeixen les dades.

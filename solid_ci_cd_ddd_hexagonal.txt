@@ -1,0 +1,59 @@
+**Relació entre SOLID, DDD, Arquitectura Hexagonal i CI/CD**
+
+Els conceptes de SOLID, Domain-Driven Design (DDD), Arquitectura Hexagonal i CI/CD estan interconnectats perquè formen part de bones pràctiques per desenvolupar programari escalable, mantenible i eficient.
+
+---
+
+1. **SOLID i DDD**
+   - SOLID proporciona principis per escriure codi orientat a objectes que sigui clar i mantenible.
+   - DDD se centra en modelar correctament el domini empresarial.
+   - Relació:
+     - SRP (Single Responsibility Principle) ajuda a dissenyar entitats i objectes de valor amb una sola responsabilitat.
+     - DIP (Dependency Inversion Principle) garanteix que els serveis de DDD depenguin de ports (interfícies) en lloc d'implementacions concretes.
+
+---
+
+2. **DDD i Arquitectura Hexagonal**
+   - L'Arquitectura Hexagonal és una implementació pràctica de DDD.
+   - Ports i Adaptadors s'utilitzen per separar la lògica del domini (core) de les integracions externes:
+     - **Ports entrants:** Casos d'ús per interactuar amb el domini.
+     - **Ports sortints:** Interfícies que defineixen com el domini interactua amb serveis externs com bases de dades o APIs.
+
+---
+
+3. **Arquitectura Hexagonal i CI/CD**
+   - La separació entre el core i la infraestructura facilita les proves automatitzades.
+   - Relació:
+     - CI (Integració Contínua): Proves del core del domini independentment de les dependències externes.
+     - CD (Entrega/Desplegament Contínu): Automatització del desplegament dels adaptadors sense afectar el domini.
+
+---
+
+4. **SOLID i Arquitectura Hexagonal**
+   - Els principis de SOLID es reflecteixen en l'Arquitectura Hexagonal:
+     - DIP (Dependency Inversion Principle): Els adaptadors depenen dels ports definits pel core.
+     - OCP (Open/Closed Principle): Nous adaptadors es poden afegir sense modificar el core.
+
+---
+
+5. **DDD i CI/CD**
+   - DDD defineix el model del domini.
+   - CI/CD automatitza la validació constant del model:
+     - Proves unitàries per validar entitats i serveis.
+     - Proves d'integració per assegurar la funcionalitat dels adaptadors.
+
+---
+
+**Exemple de treball conjunt:**
+1. Utilitzes SOLID per escriure codi clar.
+2. Organitzes el projecte seguint els principis de DDD.
+3. Implementes l'Arquitectura Hexagonal amb ports i adaptadors.
+4. Configures pipelines de CI/CD per assegurar proves i desplegament continu.
+
+---
+
+**Què són els adaptadors?**
+- En l'Arquitectura Hexagonal, un **adaptador** és el component que implementa un port (interfície) per connectar la lògica del domini amb tecnologies o serveis específics.
+- Exemple:
+  - **Repositori:** Un adaptador que connecta el domini amb una base de dades.
+  - **Servei REST:** Un adaptador que exposa funcionalitats del domini a través d'una API.
