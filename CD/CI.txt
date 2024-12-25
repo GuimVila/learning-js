@@ -1,0 +1,31 @@
+CI/CD (Continuous Integration/Continuous Deployment/Delivery) is a methodology to automate and streamline the software development lifecycle, from writing code to deploying it in production.
+
+1. **Continuous Integration (CI):**
+   - Frequent integration of code into a shared repository.
+   - Automated testing ensures changes don’t break the system.
+   - Benefits:
+     - Detect bugs early.
+     - Maintain a functional codebase.
+   - Tools: Jenkins, GitHub Actions, GitLab CI/CD.
+
+2. **Continuous Delivery (CD):**
+   - Ensures code passing CI is ready for deployment.
+   - May include manual approvals for production.
+   - Benefits:
+     - Reduces deployment risks.
+     - Enables frequent releases.
+
+3. **Continuous Deployment (CD):**
+   - Fully automates deployment to production after CI/CD pipelines pass.
+   - Benefits:
+     - Faster feature releases.
+     - Immediate user feedback.
+
+**Comparison:**
+| Aspect                     | CI                          | Continuous Delivery        | Continuous Deployment       |
+|---------------------------|----------------------------|----------------------------|-----------------------------|
+| Objective                 | Validate code changes       | Prepare code for release   | Deploy changes automatically|
+| Automation                | Testing and integration     | Release pipelines          | Full deployment             |
+| Manual Intervention       | No                          | Optional                   | No                          |
+
+CI/CD simplifies and accelerates software development by automating repetitive tasks, ensuring reliability, and allowing teams to focus on delivering value to users.
